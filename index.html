@@ -91,10 +91,17 @@
     border-radius: 8px; padding: 7px 12px; text-align: center; flex: 1; min-width: 60px;
   }
   .summary-pill .num { font-size: 17px; font-weight: 700; color: var(--gold); line-height: 1; }
-  .summary-pill .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .timeline { position: relative; padding-left: 26px; }
+  .summary-pill .lbl { font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .timeline { position: relative; padding-left: 72px; }
   .timeline::before {
-    content: ''; position: absolute; left: 8px; top: 12px; bottom: 12px;
+    content: ''; position: absolute; left: 60px; top: 12px; bottom: 12px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    opacity: 0.25;
+  }
+  .timeline { position: relative; padding-left: 72px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 60px; top: 12px; bottom: 12px;
     width: 2px;
     background: linear-gradient(to bottom, var(--gold), transparent);
     opacity: 0.25;
@@ -113,15 +120,21 @@
   .event:nth-child(7){animation-delay:.28s}.event:nth-child(8){animation-delay:.32s}
   .event:nth-child(9){animation-delay:.36s}.event:nth-child(10){animation-delay:.40s}
   .event:nth-child(11){animation-delay:.44s}.event:nth-child(12){animation-delay:.48s}
-  .dot {
-    position: absolute; left: -20px; top: 16px;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--gold); border: 2px solid var(--dark);
-    box-shadow: 0 0 0 2px rgba(201,168,76,0.25);
+  .dot-time {
+    position: absolute; left: -78px; top: 12px;
+    width: 50px; text-align: center;
+    font-size: 13px; font-weight: 700; color: var(--gold);
+    letter-spacing: 0.5px; line-height: 1.3;
+    white-space: pre-line;
   }
-  .dot.travel { background: var(--blue); box-shadow: 0 0 0 2px rgba(74,144,196,0.25); }
-  .dot.food   { background: #E07050; box-shadow: 0 0 0 2px rgba(224,112,80,0.25); }
-  .dot.hotel  { background: var(--green); box-shadow: 0 0 0 2px rgba(76,175,125,0.25); }
+  /* จุดกลมเชื่อมเส้น */
+  .event::before {
+    content: ''; position: absolute; left: -16px; top: 16px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--dark);
+    box-shadow: 0 0 0 2px rgba(201,168,76,0.3);
+    z-index: 1;
+  }
   .card {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 12px; padding: 12px 14px; transition: border-color 0.2s;
@@ -145,14 +158,22 @@
   .tag-hotel    { background: rgba(76,175,125,0.15);  color: #7dcca0; }
   .tag-activity { background: rgba(180,120,220,0.15); color: #c899e0; }
   .map-btn {
-    display: inline-flex; align-items: center; gap: 5px;
+    display: inline-flex; align-items: center; gap: 4px;
     background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
-    color: var(--gold-light); padding: 5px 11px; border-radius: 7px;
-    font-size: 11px; font-weight: 600; text-decoration: none;
+    color: var(--gold-light); padding: 3px 8px; border-radius: 5px;
+    font-size: 9px; font-weight: 600; text-decoration: none;
     font-family: 'Sarabun', sans-serif; transition: all 0.2s;
   }
   .map-btn:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); }
-  .map-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+  .map-btn svg { width: 9px; height: 9px; flex-shrink: 0; }
+  .map-pending {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.04); border: 1px solid #333;
+    color: #555; padding: 3px 8px; border-radius: 5px;
+    font-size: 9px; font-weight: 600;
+    font-family: 'Sarabun', sans-serif; cursor: default;
+  }
+  .map-pending svg { width: 9px; height: 9px; flex-shrink: 0; }
   .note-box {
     background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15);
     border-left: 3px solid var(--gold); border-radius: 8px;
@@ -185,7 +206,6 @@
     </div>
     <div class="summary-bar">
       <div class="summary-pill"><div class="num">4</div><div class="lbl">กิจกรรม</div></div>
-      <div class="summary-pill"><div class="num">0</div><div class="lbl">วัด/บุญ</div></div>
       <div class="summary-pill"><div class="num">0</div><div class="lbl">มื้ออาหาร</div></div>
       <div class="summary-pill"><div class="num">3</div><div class="lbl">Maps พร้อม</div></div>
     </div>
@@ -244,7 +264,6 @@
     </div>
     <div class="summary-bar">
       <div class="summary-pill"><div class="num">1</div><div class="lbl">กิจกรรม</div></div>
-      <div class="summary-pill"><div class="num">0</div><div class="lbl">วัด/บุญ</div></div>
       <div class="summary-pill"><div class="num">0</div><div class="lbl">มื้ออาหาร</div></div>
       <div class="summary-pill"><div class="num">0</div><div class="lbl">Maps พร้อม</div></div>
     </div>
@@ -363,7 +382,6 @@
     </div>
     <div class="summary-bar">
       <div class="summary-pill"><div class="num">1</div><div class="lbl">กิจกรรม</div></div>
-      <div class="summary-pill"><div class="num">0</div><div class="lbl">วัด/บุญ</div></div>
       <div class="summary-pill"><div class="num">0</div><div class="lbl">มื้ออาหาร</div></div>
       <div class="summary-pill"><div class="num">0</div><div class="lbl">Maps พร้อม</div></div>
     </div>
@@ -489,6 +507,7 @@ const TRIP_DATA = {
       label:    "15 May",
       date:     "วันศุกร์ที่ 15 พฤษภาคม 2569",
       location: "กรุงเทพฯ → เขาใหญ่",
+      highlight: "",
       note:     "เดินทางช่วงกลางคืนสามารถพักผ่อนบนรถได้",
 
       events: [
@@ -503,7 +522,7 @@ const TRIP_DATA = {
         {
           time: "19:30",
           name: "รับ K.กระทิง",
-          desc: "",
+          desc: "@คอนโด",
           tag:  "travel",
           dot:  "travel",
           map:  "https://maps.app.goo.gl/4FosDRz9RUWRkPck6"
@@ -532,16 +551,49 @@ const TRIP_DATA = {
       label:    "16 May",
       date:     "วันเสาร์ที่ 16 พฤษภาคม 2569",
       location: "เขาใหญ่",
-      note:     "วัดป่ารัตนวัน — วัดป่าสายหลวงปู่ชา เจ้าอาวาสคือพระอาจารย์ฟิลลิป | เวลาปรับเปลี่ยนไปตามสถานการณ์ที่เกิดขึ้น",
+      highlight: "🪷 ใส่บาตรวัดป่ารัตนวัน  |  🏫 พบครูแจ๊ส โรงเรียนปัญญาประทีป",
+      note:     "วัดป่ารัตนวัน — วัดป่าสายหลวงปู่ชา เจ้าอาวาสคือพระอาจารย์ฟิลลิป | 📌 เวลาปรับเปลี่ยนไปตามสถานการณ์ที่เกิดขึ้น | ปล.1 ช่วงก่อนหรือหลังฟังเทศน์ เมื่อถึงเวลา จะมีคนแจ้งให้นำของวางถวายของบนโต๊ะ & วางใบปวารณาหน้า พอจ.ฟิลลิป | ปล.2 ช่วงหลังจากกินข้าวเสร็จ อาจเข้าไปกราบท่านที่ศาลาได้ (ลองๆดูว่าท่านอยู่ไหม?)",
 
       events: [
         {
-          time: "07:30",
-          name: "ใส่บาตร วัดป่ารัตนวัน",
+          time: "06:00",
+          name: "ออกจากโรงแรม",
+          desc: "",
+          tag:  "travel",
+          dot:  "travel",
+          map:  ""
+        },
+        {
+          time: "06:10",
+          name: "ถึงหน้าวัด — จัดของ รอตักบาตร",
           desc: "",
           tag:  "temple",
           dot:  "",
-          map:  "https://maps.app.goo.gl/8eDLCapbU7EjErmy7"
+          map:  ""
+        },
+        {
+          time: "06:30",
+          name: "ตักบาตร @หน้าวัด",
+          desc: "",
+          tag:  "temple",
+          dot:  "",
+          map:  "https://maps.app.goo.gl/BJYn599gYVYAsc8V6"
+        },
+        {
+          time: "07:00",
+          name: "เข้าศาลา เตรียมฟังเทศน์ จาก พอจ.ฟิลลิป",
+          desc: "",
+          tag:  "temple",
+          dot:  "",
+          map:  ""
+        },
+        {
+          time: "07:45",
+          name: "กินข้าว",
+          desc: "",
+          tag:  "food",
+          dot:  "food",
+          map:  ""
         },
         {
           time: "10:00",
@@ -554,7 +606,7 @@ const TRIP_DATA = {
         {
           time: "11:45",
           name: "ทานอาหารเที่ยง ร้านเตี๋ยวปลาชามเปล",
-          desc: "เส้นไข่สดนุ่ม ลูกชิ้นปลาหลากหลาย น้ำซุปกลมกล่อม",
+          desc: "",
           tag:  "food",
           dot:  "food",
           map:  "https://maps.app.goo.gl/p92NTWT7hraX2TBK7"
@@ -576,17 +628,17 @@ const TRIP_DATA = {
           map:  ""
         },
         {
-          time: "16:00",
+          time: "18:00",
           name: "ทานอาหารเย็น",
           desc: "",
           tag:  "food",
           dot:  "food",
-          map:  ""
+          map:  "pending"
         },
         {
-          time: "17:00",
-          name: "Isaree Secret Garden",
-          desc: "เช็คอินเข้าที่พัก พักผ่อนตามอัธยาศัย",
+          time: "21:00",
+          name: "เช็คอิน Isaree Secret Garden",
+          desc: "พักผ่อนตามอัธยาศัย",
           tag:  "hotel",
           dot:  "hotel",
           map:  "https://maps.app.goo.gl/8YgifXZQeTsJLSYF9"
@@ -599,7 +651,8 @@ const TRIP_DATA = {
       label:    "17 May",
       date:     "วันอาทิตย์ที่ 17 พฤษภาคม 2569",
       location: "เขาใหญ่ → กรุงเทพฯ",
-      note:     "ชั้น 2 บ้านบุญ — แถวหน้าสุดนั่งได้เฉพาะผู้ชาย / ชั้น 1 ดูทีวีถ่ายทอดสด | เวลาปรับเปลี่ยนไปตามสถานการณ์ที่เกิดขึ้น",
+      highlight: "🙏 เข้ากราบ พระอาจารย์ชยสาโร",
+      note:     "เวลาปรับเปลี่ยนไปตามสถานการณ์ที่เกิดขึ้น",
 
       events: [
         {
@@ -680,7 +733,7 @@ const TRIP_DATA = {
           desc: "",
           tag:  "food",
           dot:  "food",
-          map:  ""
+          map:  "pending"
         },
         {
           time: "13:30–16:30",
@@ -693,7 +746,7 @@ const TRIP_DATA = {
         {
           time: "16:30",
           name: "ส่ง K.กระทิง",
-          desc: "",
+          desc: "@คอนโด",
           tag:  "travel",
           dot:  "travel",
           map:  "https://maps.app.goo.gl/4FosDRz9RUWRkPck6"
@@ -742,6 +795,10 @@ const dotClass = { travel:"travel", food:"food", hotel:"hotel" };
 
 function mapBtn(url) {
   if (!url) return '';
+  if (url === 'pending') return `<span class="map-btn map-pending">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+    </svg>เปิด Maps</span>`;
   return `<a href="${url}" target="_blank" class="map-btn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
@@ -750,10 +807,8 @@ function mapBtn(url) {
 
 function buildEvent(e) {
   return `<div class="event">
-    <div class="dot ${dotClass[e.dot]||''}"></div>
+    <div class="dot-time">${e.time}</div>
     <div class="card">
-      <div class="event-time">${e.time}</div>
-      <span class="tag tag-${e.tag}">${tagLabels[e.tag]||e.tag}</span>
       <div class="event-name">${e.name}</div>
       ${e.desc ? `<div class="event-desc">${e.desc}</div>` : ''}
       ${mapBtn(e.map)}
@@ -762,7 +817,6 @@ function buildEvent(e) {
 }
 
 function buildDay(day, i) {
-  const temples = day.events.filter(e => e.tag === 'temple').length;
   const foods   = day.events.filter(e => e.tag === 'food').length;
   const maps    = day.events.filter(e => e.map).length;
   return `<div class="day-section ${i===0?'active':''}" id="day-${i}">
@@ -772,13 +826,10 @@ function buildDay(day, i) {
       <div class="day-location">📍 ${day.location}</div>
     </div>
     <div class="summary-bar">
-      <div class="summary-pill"><div class="num">${day.events.length}</div><div class="lbl">กิจกรรม</div></div>
-      <div class="summary-pill"><div class="num">${temples}</div><div class="lbl">วัด/บุญ</div></div>
-      <div class="summary-pill"><div class="num">${foods}</div><div class="lbl">มื้ออาหาร</div></div>
-      <div class="summary-pill"><div class="num">${maps}</div><div class="lbl">Maps พร้อม</div></div>
+      ${day.highlight ? `<div class="summary-pill"><div class="lbl">${day.highlight}</div></div>` : ''}
     </div>
     <div class="timeline">${day.events.map(buildEvent).join('')}</div>
-    ${day.note ? `<div class="note-box"><strong>📌 หมายเหตุ</strong>${day.note}</div>` : ''}
+    ${day.note ? `<div class="note-box"><strong>📌 หมายเหตุ</strong>${day.note.split('|').map(s => `<div>${s.trim()}</div>`).join('')}</div>` : ''}
   </div>`;
 }
 
